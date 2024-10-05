@@ -59,6 +59,9 @@ footer {
   margin-right: 10px;
   color: #555;
 }
+.social-media i{
+  margin-right:8px;
+}
 
 .footer-bottom {
   text-align: center;

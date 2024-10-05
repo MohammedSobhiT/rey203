@@ -1,9 +1,35 @@
-<div class="products-container">
-  <div *ngFor="let product of lightingProducts" class="product-card" [routerLink]="['/details',product.id]" routerLinkActive="router-link-active" >
-    <img [src]="product.imageUrl" [alt]="product.name" />
-    <h2>{{ product.name }}</h2>
-    <p class="price">$ {{ product.price.toFixed(2) }}</p>
+<section>
+  <div class="charisHome">
+    <h2 class="gText text-uppercase fw-bolder ms-3 mb-4">Lighting</h2>
   </div>
-</div>
+</section>
 
-
+<section>
+  <div class="container-fluid gallery">
+    <div class="row">
+      <div
+        class="col-sm-6 col-md-4 col-lg-3"
+        *ngFor="let product of lightingProducts"
+      >
+        <div class="chairCard" >
+          <div class="img">
+            <img [src]="product.imageUrl" alt="" class="chairImg" [routerLink]="['/details', product.id]"/>
+          </div>
+          <div class="info">
+            <p class="pstatus">{{ product.status }}</p>
+            <div class="pname">{{ product.name }}</div>
+          </div>
+          <div class="price">
+            <span>{{ product.price }}$</span>
+            <div class="view">
+              <p class="gText hover">ADD TO CART</p>
+              <p class="gText hover">QUICKVIEW</p>
+              <i class="fa-regular fa-heart"></i>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</section>

@@ -4,14 +4,14 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-lighting',
   standalone: true,
-  imports: [CommonModule,RouterModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './lighting.component.html',
   styleUrl: './lighting.component.css',
 })
 export class LightingComponent {
   lightingProducts = [
     {
-      id: 1,
+      id: 2001,
       name: 'Albert Ceiling Spotlight Bar, Charcoal',
       price: 289.0,
       description:
@@ -19,10 +19,10 @@ export class LightingComponent {
       imageUrl:
         'https://demos.reytheme.com/beijing/wp-content/uploads/sites/7/2019/06/28-800x652.jpg',
       category: 'Lighting',
+      status: 'in stock',
     },
-
     {
-      id: 2,
+      id: 2002,
       name: 'Chicago Large Pendant, Green & Brass',
       price: 129.0,
       description:
@@ -30,10 +30,10 @@ export class LightingComponent {
       imageUrl:
         'https://demos.reytheme.com/beijing/wp-content/uploads/sites/7/2019/06/30-800x800.jpg',
       category: 'Lighting',
+      status: 'in stock',
     },
-
     {
-      id: 3,
+      id: 2003,
       name: 'Gigi Tilting Pendant Chandelier Light',
       price: 89.0,
       description:
@@ -41,10 +41,10 @@ export class LightingComponent {
       imageUrl:
         'https://demos.reytheme.com/beijing/wp-content/uploads/sites/7/2019/06/1-13.jpg',
       category: 'Lighting',
+      status: 'in stock',
     },
-
     {
-      id: 4,
+      id: 2004,
       name: 'Java Shade Small, Natural Rattan',
       price: 189.0,
       description:
@@ -52,6 +52,7 @@ export class LightingComponent {
       imageUrl:
         'https://demos.reytheme.com/beijing/wp-content/uploads/sites/7/2019/06/1-12.jpg',
       category: 'Lighting',
+      status: 'in stock',
     },
   ];
 }

@@ -1,386 +1,371 @@
 /* Products-start */
 .products-content {
-    margin-top: 30px;
-    overflow: hidden;
+  margin-top: 30px;
+  overflow: hidden;
 }
 
 .product-left img {
-    width: 100%;
+  max-width: 100%;
 }
 
 .product-right a {
-    text-decoration: none;
-    font-size: 12px;
-    text-transform: uppercase;
-    font-weight: 600;
+  text-decoration: none;
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: 600;
 }
 
-
-
 .product-category {
-    display: flex;
-    justify-content: space-between;
-
+  display: flex;
+  justify-content: space-between;
 }
 
 .category-arrows {
-    transform: translatex(90%);
-    display: flex;
-    gap: 10px;
-
+  transform: translatex(90%);
+  display: flex;
+  gap: 10px;
 }
 
 .category-arrows svg:hover {
-    cursor: pointer;
-    transform: scale(0.8);
-    transition: 0.5s;
-
+  cursor: pointer;
+  transform: scale(0.8);
+  transition: 0.5s;
 }
 
-
 .product-right h1 {
-    margin: 30px 0px 20px;
+  margin: 30px 0px 20px;
 }
 
 .product-right h6 {
-    margin: 20px 0px 20px;
-    font-size: 20px;
-    font-weight: bold;
+  margin: 20px 0px 20px;
+  font-size: 20px;
+  font-weight: bold;
 }
 
 .product-right p {
-    font-weight: 300;
+  font-weight: 300;
 }
 
 .product-right svg {
-    width: 3%;
-    opacity: 0.3;
+  width: 3%;
+  opacity: 0.3;
 }
 
 .product-right span {
-    text-transform: uppercase;
-    font-size: 12px;
-    padding-left: 10px;
-    font-weight: bold;
-
+  text-transform: uppercase;
+  font-size: 12px;
+  padding-left: 10px;
+  font-weight: bold;
 }
 
 .product-card {
-    margin-top: 20px;
-    display: flex;
-    align-items: center;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
 }
 
 .addToCard {
-    width: 50%;
-    height: 50px;
-    background-color: #212529;
-    display: flex;
-    align-items: center;
+  width: 50%;
+  height: 50px;
+  background-color: #212529;
+  display: flex;
+  align-items: center;
 }
 
 .numbers {
-    width: 30%;
-    padding: 8px 6px;
-    margin: 6px;
-    background-color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 30%;
+  padding: 8px 6px;
+  margin: 6px;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .numbers span {
-    width: 100%;
-    font-size: 17px;
+  width: 100%;
+  font-size: 17px;
 }
 
 .number {
-    border-left: 2px solid #aaadb0;
-    border-right: 2px solid #aaadb0;
+  border-left: 2px solid #aaadb0;
+  border-right: 2px solid #aaadb0;
 }
 
 .card-button {
-    width: 65%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 65%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .card-button button {
-    background-color: #212529;
-    border: none;
-    color: #fff;
-    padding: 10px 20px;
+  background-color: #212529;
+  border: none;
+  color: #fff;
+  padding: 10px 20px;
 }
 
 .card-button:hover,
 .card-button button:hover {
-    background-color: #000;
+  background-color: #000;
 }
 
 .addToWishlist svg {
-    width: 20px;
-    opacity: 1;
-    margin-left: 20px;
+  width: 20px;
+  opacity: 1;
+  margin-left: 20px;
 }
 
 .addToWishlist a {
-    margin-left: 5px;
-    font-size: 13px;
-    position: relative;
+  margin-left: 5px;
+  font-size: 13px;
+  position: relative;
 }
 
 .addToWishlist a::after {
-    content: " ";
-    width: 0px;
-    border: 1px solid rgb(255, 255, 255);
-    position: absolute;
-    top: 100%;
-    left: 0px;
-    transition: 0.3s;
-
+  content: " ";
+  width: 0px;
+  border: 1px solid rgb(255, 255, 255);
+  position: absolute;
+  top: 100%;
+  left: 0px;
+  transition: 0.3s;
 }
 
 .addToWishlist a:hover::after {
-    cursor: pointer;
-    border: 1px solid rgb(0, 0, 0);
-    width: 90%;
+  cursor: pointer;
+  border: 1px solid rgb(0, 0, 0);
+  width: 90%;
 }
 
 .icons-container P {
-    font-size: 12px;
-    margin: 20px 0px;
-    font-weight: 300;
+  font-size: 12px;
+  margin: 20px 0px;
+  font-weight: 300;
 }
 
 .icons-container div span {
-    font-size: 12px;
-    font-weight: 300;
+  font-size: 12px;
+  font-weight: 300;
 }
 
 .icons {
-    display: flex;
-    align-items: center;
-    gap: 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
 .icons a svg {
-    width: 20px;
-    opacity: 0.6;
+  width: 20px;
+  opacity: 0.6;
 }
 
+@media (max-width: 576px) {
+  .card-button button {
+    font-size: 13px;
+    padding: 10px;
+  }
 
-@media (max-width:576px) {
-    .card-button button {
-        font-size: 13px;
-        padding: 10px;
-    }
-
-    .numbers span {
-        font-size: 14px;
-    }
+  .numbers span {
+    font-size: 14px;
+  }
 }
 
 /* Products-end  */
 /* Description-start */
 /* Info-start */
 .description-info {
-    margin-top: 50px;
+  margin-top: 50px;
 }
 
 .description-info h2 {
-    font-size: 32px;
-    font-weight: bold;
-    margin-bottom: 22px;
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 22px;
 }
 
 .description-info p {
-    font-size: 16px;
-    font-weight: 300;
-    margin-bottom: 20px;
-    width: 75%;
+  font-size: 16px;
+  font-weight: 300;
+  margin-bottom: 20px;
+  width: 75%;
 }
 
 .description-text {
-    margin-bottom: 0px !important;
+  margin-bottom: 0px !important;
 }
 
 .description-info a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .description-info h6 {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .description-right {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .description-right h5 {
-    font-size: 12px;
-    text-transform: uppercase;
-    font-weight: bold;
-    padding: 8px 0px;
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 8px 0px;
 }
 
 .description-right h4 {
-    font-size: 14px;
-    font-weight: 300;
-    padding: 8px 0px;
+  font-size: 14px;
+  font-weight: 300;
+  padding: 8px 0px;
 }
 
-@media (max-width:576px) {
-    .description-info p {
-        width: 100%;
-    }
+@media (max-width: 576px) {
+  .description-info p {
+    width: 100%;
+  }
 }
 
 /* Info-end */
 /* Review-start */
 .review-button {
-    margin-top: 35px;
+  margin-top: 35px;
 }
 
 .review-button button {
-    width: 100%;
-    background-color: #fff;
-    border: 1px #aaadb0 solid;
-    text-transform: uppercase;
-    font-size: 13px;
-    color: #353b41;
-    padding: 10px 0px;
+  width: 100%;
+  background-color: #fff;
+  border: 1px #aaadb0 solid;
+  text-transform: uppercase;
+  font-size: 13px;
+  color: #353b41;
+  padding: 10px 0px;
 }
 
 .review-button button:hover {
-    border-color: #212529;
-
+  border-color: #212529;
 }
 
 .add-review {
-    width: 70%;
-    margin: auto;
+  width: 70%;
+  margin: auto;
 }
 
 .add-review h2 {
-    font-size: 32px;
-    margin: 40px 0px;
+  font-size: 32px;
+  margin: 40px 0px;
 }
 
 .add-review div {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
-
 .add-review div button {
-    font-size: 12px;
-    font-weight: bold;
-    background-color: #212529;
-    color: #fff;
-    border: none;
-    padding: 5px 20px;
+  font-size: 12px;
+  font-weight: bold;
+  background-color: #212529;
+  color: #fff;
+  border: none;
+  padding: 5px 20px;
 }
 
 .add-review div button:hover {
-    background-color: #000;
+  background-color: #000;
 }
 
 .review-container {
-    width: 70%;
-    margin: 50px auto;
+  width: 70%;
+  margin: 50px auto;
 }
 
 .review-container h3 {
-    font-size: 16px;
-    font-weight: bold;
-    margin-bottom: 20px;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 20px;
 }
 
 .review-container p {
-    font-size: 13px;
+  font-size: 13px;
 }
 
 .review-stars {
-    width: 40%;
-    display: flex;
-    align-items: center;
-    gap: 13px;
+  width: 40%;
+  display: flex;
+  align-items: center;
+  gap: 13px;
 }
 
 .review-stars h6 {
-    font-size: 13px;
-    margin: 0px;
+  font-size: 13px;
+  margin: 0px;
 }
 
 .review-stars svg {
-    width: 15px;
-    opacity: 0.7;
+  width: 15px;
+  opacity: 0.7;
 }
 
 .review-form form {
-    margin-top: 30px;
+  margin-top: 30px;
 }
 
 .review-form input:focus {
-    border-color: none;
+  border-color: none;
 }
 
 .review-form form .label-text {
-    font-size: 13px;
-    margin-bottom: 10px;
-    width: 100%;
-    margin-top: 20px;
-
+  font-size: 13px;
+  margin-bottom: 10px;
+  width: 100%;
+  margin-top: 20px;
 }
 
 .review-form form textarea {
-    width: 100%;
-    padding: 50px 0px;
-
+  width: 100%;
+  padding: 50px 0px;
 }
 
 .review-form .input-button {
-    width: 100%;
-    padding: 10px 0px;
+  width: 100%;
+  padding: 10px 0px;
 }
 
 .form-control:focus {
-    border-color: #aaadb0;
-    box-shadow: none;
+  border-color: #aaadb0;
+  box-shadow: none;
 }
 
 .check-button {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 .label-confirm {
-    font-size: 13px;
-    font-weight: 300;
-    padding-left: 10px;
+  font-size: 13px;
+  font-weight: 300;
+  padding-left: 10px;
 }
 
 .review-form button {
-    display: block;
-    background-color: #DFE3E7;
-    border: none;
-    font-size: 13px;
-    font-weight: bold;
-    padding: 10px 20px;
-    margin: 25px 0px;
+  display: block;
+  background-color: #dfe3e7;
+  border: none;
+  font-size: 13px;
+  font-weight: bold;
+  padding: 10px 20px;
+  margin: 25px 0px;
 }
 
 .review-form button:hover {
-    background-color: #c6c9cb;
+  background-color: #c6c9cb;
 }
 
-
-@media (max-width:576px) {
-    .add-review div {
-        flex-direction: column;
-    }
+@media (max-width: 576px) {
+  .add-review div {
+    flex-direction: column;
+  }
 }
-
 
 /* Products-Description-page| END */
