@@ -1,0 +1,493 @@
+/* silde imgs-start */
+svg {
+  width: 120%; /* Responsive width */
+  height: 100vh; /* Full height */
+  position: absolute;
+}
+
+.animated-line {
+  animation: draw 2s forwards, fill 5s forwards;
+  stroke-dasharray: 2000;
+  stroke-dashoffset: 2000;
+  stroke: #fff;
+  -webkit-animation: draw 2s forwards, width 2s forwards,
+    fill 3s ease-in forwards;
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0; /* End fully visible */
+  }
+}
+@keyframes width {
+  to {
+    stroke-width: 15; /* End fully visible */
+  }
+}
+
+@keyframes fill {
+  0% {
+    stroke: #ffffff; /* Start without fill */
+  }
+  100% {
+    stroke: rgba(255, 255, 255, 0.31); /* Final fill color */
+  }
+}
+
+/* Adding delays for staggered animations */
+.animated-line:nth-child(1) {
+  animation-delay: 0.5s;
+}
+.animated-line:nth-child(2) {
+  animation-delay: 0.8s;
+}
+.animated-line:nth-child(3) {
+  animation-delay: 1s;
+}
+.animated-line:nth-child(4) {
+  animation-delay: 1.3s;
+}
+.animated-line:nth-child(5) {
+  animation-delay: 1.5s;
+}
+
+.hero-slides {
+  margin-bottom: 100px;
+}
+.hero-slides .card {
+  border: none;
+  border-bottom: 1px solid;
+}
+
+.home-silde-1 {
+  background-image: url(/assets/IMGS/home-slide-1.webp);
+  background-position: center;
+  background-size: cover;
+}
+
+.home-silde-2 {
+  background-image: url(/assets/IMGS/home-slide-2.webp);
+  background-position: center;
+  background-size: cover;
+}
+
+.home-silde-3 {
+  background-image: url(/assets/IMGS/home-slide-3.webp);
+  background-position: center;
+  background-size: cover;
+}
+.de-layer {
+  background-image: url(/assets/IMGS/de-layer.jpeg);
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
+}
+.home-silde-layer {
+  background-color: rgba(0, 0, 0, 0.3);
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.silde-content {
+  width: 400px;
+  text-align: center;
+  margin: auto;
+  color: #fff;
+  font-weight: bold;
+}
+
+.silde-content h4 {
+  font-size: 14px;
+  margin: 0px 0px 20px;
+  font-weight: bold;
+}
+
+.silde-content h1 {
+  font-size: 72px;
+  margin: 0px 0px 16px;
+  font-weight: bold;
+}
+
+.silde-content p {
+  font-size: 18px;
+  margin: 0px 0px 35px;
+  font-weight: bold;
+}
+
+.silde-content h6 {
+  font-size: 12px;
+  margin: 0px 0px 5px;
+  padding-top: 20px;
+  text-transform: uppercase;
+  position: relative;
+  font-weight: bold;
+  
+}
+
+.silde-content h6::after {
+  content: " ";
+  width: 70px;
+  border: 1px solid rgb(255, 255, 255);
+  position: absolute;
+  top: 100%;
+  left: 41%;
+  transition: 0.3s;
+}
+
+.silde-content h6:hover::after {
+  
+  animation-name: shopNow;
+  animation-duration: 1s;
+}
+
+@keyframes shopNow {
+  10% {
+    width: 0px;
+  }
+
+  30% {
+    width: 50px;
+  }
+
+  70% {
+    width: 70px;
+  }
+}
+
+.hero-content {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hero-email a {
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.hero-links {
+  width: 150px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.hero-links h4 {
+  font-size: 12px;
+  margin-bottom: 0;
+}
+
+@media (max-width: 576px) {
+  .silde-content h1 {
+    font-size: 40px;
+  }
+}
+
+/* =================== silde imgs-end =================== */
+
+.slider {
+  width: 100%;
+  height: 400px;
+  position: relative;
+  margin: auto;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+.slider h1 {
+  margin-bottom: 0;
+}
+.slider p {
+  color:#484f56;
+}
+
+.slider::-webkit-scrollbar {
+  display: none;
+}
+
+.slider .slide {
+  display: flex;
+  position: absolute;
+  left: 0;
+  transition: 0.3s left ease-in-out;
+  height: 400px;
+}
+
+.slider .item {
+  margin-right: 10px;
+  max-width: 100%;
+  aspect-ratio: 1/1;
+  /* object-fit: contain; */
+}
+
+.slider .item:last-child {
+  margin-right: 0;
+}
+
+.ctrl {
+  text-align: center;
+  margin-top: 5px;
+}
+
+.ctrl-btn {
+  padding: 20px 20px;
+  min-width: 50px;
+  background: #fff;
+  border: none;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  position: absolute;
+  top: 0;
+  
+}
+
+.ctrl-btn.pro-prev {
+  left: 0;
+}
+
+.ctrl-btn.pro-next {
+  right: 0;
+}
+
+/* /////////////////////// */
+.stories {
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+/* ///////////////////////// */
+/* CATEGORIES */
+
+
+/* start of categories section */
+.featuredCategories {
+  margin-bottom: 100px;
+}
+.featuredCategories p {
+  font-weight: bold;
+}
+.categoriesHome {
+  width: 90%;
+  margin: auto;
+}
+
+.cardImgDiv {
+  width: 90%;
+  margin: auto;
+}
+
+.imgEffect {
+  width: 100%;
+  transition: transform 750ms;
+  border: 1px solid transparent;
+  border-radius: 5px;
+}
+
+.imgEffect:hover {
+  transform: scale(1.1);
+}
+
+/* start of form section */
+
+.formInPut {
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+
+form button {
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+
+.test {
+  border: 2px solid red;
+}
+
+.inPutDiv {
+  border: 2px solid rgb(216, 216, 216);
+  width: 90%;
+}
+
+/* end of form section */
+
+/* start SOFABEDS */
+.link-sofabeds {
+  text-decoration: none;
+  color: rgb(83, 81, 81);
+}
+.btn-sofabed {
+  background-color: white;
+  border: none;
+  margin-top: 10px;
+  font-weight: 600;
+  font-size: medium;
+}
+.p-sofabeds {
+  line-height: 25px;
+  font-size: large;
+}
+.img-1,
+.img-2 {
+  width: 100%;
+}
+.img-1 {
+  margin-top: 100px;
+}
+/* end SOFABEDS */
+/* ================= Viedo-Page| START =================== */
+
+.video-right {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.video-logo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.video-right p {
+  font-size: 31px;
+  font-style: italic;
+}
+
+.video-right img {
+  width: 15%;
+  margin: 20px;
+}
+
+.video-right a {
+  font-size: 13px;
+  font-weight: bolder;
+  position: relative;
+  text-decoration: none;
+}
+
+.video-right a::after {
+  content: " ";
+  width: 0px;
+  border: 1px solid rgb(255, 255, 255);
+  position: absolute;
+  top: 90%;
+  left: 0px;
+  transition: 0.3s;
+}
+
+.video-right a:hover::after {
+  cursor: pointer;
+  border: 1px solid rgb(0, 0, 0);
+  width: 100%;
+}
+
+.video-right .video-box {
+  display: flex;
+  gap: 30px;
+}
+
+@media (max-width: 1024px) {
+  .video-right iframe {
+    width: 100%;
+    height: 100%;
+  }
+  .video-right p {
+    font-size: 25px;
+    width: 100% !important;
+    flex-direction: column;
+  }
+  .video-right .video-box {
+    flex-direction: column;
+  }
+}
+
+/* =================== Video-Page| END ================== */
+
+/* start CHOSEN WITH CARE */
+.chosen-care {
+  background-image: url(/assets/IMGS/GG.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 70vh;
+  margin: 0px 15px;
+}
+.text-chosen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  color: #1559b6;
+  flex-direction: column;
+  padding-top: 50vh;
+  line-height: 15px;
+}
+.h1-chosen {
+  font-weight: bold;
+  font-size: 50px;
+}
+.p1-chosen {
+  font-size: medium;
+  font-weight: 600;
+}
+.p2-chosen {
+  text-align: center;
+  margin-top: 15px;
+}
+
+@media (max-width: 992px) {
+  .h1-chosen {
+    font-size: 35px;
+  }
+}
+
+/* end CHOSEN WITH CARE */
+/* ===================== Gallery-Page| START ================ */
+
+.gallery-title h6 {
+  font-size: 19px;
+  color: #1559b6;
+  font-weight: bold;
+  padding-bottom: 15px;
+}
+
+.gallery-title p {
+  width: 30%;
+  margin: 0px auto 40px;
+}
+
+.gallery-title a {
+  font-size: 15px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+@media (max-width: 576px) {
+  .gallery-photes .row {
+    gap: 15px;
+  }
+
+  .gallery-title p {
+    width: 70%;
+  }
+}
+
+@media (max-width: 1024px) {
+  .gallery-title p {
+    width: 80%;
+  }
+}
+
+/* ================== Gallery-Page| END ==================== */
+section {
+  margin-bottom: 100px;
+}
+.video-page{
+  margin-top: 100px;
+}

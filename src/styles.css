@@ -1,0 +1,58 @@
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+/* @import '~@angular/material/prebuilt-themes/indigo-pink.css'; */
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  list-style: none;
+  text-decoration: none !important;
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+  
+}
+a {
+  color: #484f56;
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+.container-fluid {
+  padding-left: 35px !important;
+  padding-right: 35px !important;
+}
+
+
+body {
+  font-family: "Lato", sans-serif !important;
+  color: #484f56;
+  overflow-x: hidden;
+ 
+}
+
+.bText {
+  color: #1559b6;
+}
+
+.hover::after {
+  content: "";
+  width: 0;
+  border: 1px solid rgb(255, 255, 255);
+  position: absolute;
+  top: 75%;
+  left: 0;
+  transition: 0.3s;
+}
+.hover:hover::after {
+  cursor: pointer;
+  border: 1px solid rgb(0, 0, 0);
+  width: 100%;
+}
+

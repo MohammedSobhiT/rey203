@@ -1,0 +1,9 @@
+<div class="products-container">
+  <div *ngFor="let product of lightingProducts" class="product-card" [routerLink]="['/details',product.id]" routerLinkActive="router-link-active" >
+    <img [src]="product.imageUrl" [alt]="product.name" />
+    <h2>{{ product.name }}</h2>
+    <p class="price">$ {{ product.price.toFixed(2) }}</p>
+  </div>
+</div>
+
+
