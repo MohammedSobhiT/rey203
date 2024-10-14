@@ -192,3 +192,77 @@ const bedsProducts = [
     status: "in stock",
   },
 ];
+
+let sofasProducts = [
+  {
+    id: 6001,
+    name: "Dallas Seater Sofa, Outback Tan",
+    price: 859.0, //=>after discount //before discount 959.00 //discount is 10%
+    description:
+      "Proactively communicate corporate process improvements via corporate scenarios. Progressively aggregate proactive data after diverse users. Rapidiously redefine front-end interfaces before go forward process improvements.",
+    imageUrl:
+      "https://demos.reytheme.com/beijing/wp-content/uploads/sites/7/2019/06/1.jpg",
+    category: "sofa",
+  },
+  {
+    id: 6002,
+    name: "Haring Seater Sofa, Azure Blue",
+    price: 1159.0,
+    description:
+      "Proactively communicate corporate process improvements via corporate scenarios. Progressively aggregate proactive data after diverse users. Rapidiously redefine front-end interfaces before go forward process improvements.",
+    imageUrl:
+      "https://demos.reytheme.com/beijing/wp-content/uploads/sites/7/2019/06/capture2.jpg",
+    category: "sofa",
+  },
+  {
+    id: 6003,
+    name: "Herman Seater Sofa, Finch Grey Cotton",
+    price: 999.0,
+    description:
+      "Proactively communicate corporate process improvements via corporate scenarios. Progressively aggregate proactive data after diverse users. Rapidiously redefine front-end interfaces before go forward process improvements.",
+    imageUrl:
+      "https://demos.reytheme.com/beijing/wp-content/uploads/sites/7/2019/06/03.jpg",
+    category: "sofa",
+  },
+  {
+    id: 6004,
+    name: "Nya Seater Sofa, Summit Grey Weave",
+    price: 879.0,
+    description:
+      "Proactively communicate corporate process improvements via corporate scenarios. Progressively aggregate proactive data after diverse users. Rapidiously redefine front-end interfaces before go forward process improvements.",
+    imageUrl:
+      "https://demos.reytheme.com/beijing/wp-content/uploads/sites/7/2019/06/igp3305_1_-800x600.jpg",
+    category: "sofa",
+  },
+
+  {
+    id: 6005,
+    name: "Reece Seater Sofa, Mina Burnt Orange",
+    price: 599.0,
+    description:
+      "Proactively communicate corporate process improvements via corporate scenarios. Progressively aggregate proactive data after diverse users. Rapidiously redefine front-end interfaces before go forward process improvements.",
+    imageUrl:
+      "https://demos.reytheme.com/beijing/wp-content/uploads/sites/7/2019/06/1-1.jpg",
+    category: "sofa",
+  },
+  {
+    id: 6006,
+    name: "Ritchie Seater Sofa, Anthracite Grey",
+    price: 1499.0,
+    description:
+      "Proactively communicate corporate process improvements via corporate scenarios. Progressively aggregate proactive data after diverse users. Rapidiously redefine front-end interfaces before go forward process improvements.",
+    imageUrl:
+      "https://demos.reytheme.com/beijing/wp-content/uploads/sites/7/2019/06/1-2-600x296.jpg",
+    category: "sofa",
+  },
+  {
+    id: 6007,
+    name: "Scott Seater Sofa, Concrete Velvet",
+    price: 699.0, //after discont //before discount 22% =899.00
+    description:
+      "Proactively communicate corporate process improvements via corporate scenarios. Progressively aggregate proactive data after diverse users. Rapidiously redefine front-end interfaces before go forward process improvements.",
+    imageUrl:
+      "https://demos.reytheme.com/beijing/wp-content/uploads/sites/7/2019/06/igp3343-600x450.jpg",
+    category: "sofa",
+  },
+];

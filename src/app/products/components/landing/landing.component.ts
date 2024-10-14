@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { CartComponent } from '../../../carts/components/cart/cart.component';
 import { HeaderComponent } from '../../../shared/components/header/header.component';
 import { VanillaTiltDirective } from '../../../directives/vanilla-tilt.directive';
 import * as AOS from 'aos';
@@ -8,7 +7,7 @@ import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-landing',
   standalone: true,
-  imports: [CartComponent, HeaderComponent, VanillaTiltDirective, RouterModule],
+  imports: [ HeaderComponent, VanillaTiltDirective, RouterModule],
   templateUrl: './landing.component.html',
   styleUrls: ['./landing.component.css'], // <-- Corrected styleUrls
 })

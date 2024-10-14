@@ -1,242 +1,109 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { ProductsService } from '../../../services/products.service';
+import { CartService, CartItem } from '../../../services/cart.service'; // Ensure CartItem is imported
+
+interface Product {
+  id: number;
+  name: string;
+  price: number;
+  imageUrl: string;
+  category: string;
+  description?: string;
+  status?: string;
+}
 
 @Component({
-  selector: 'app-products-details',
+  selector: 'app-product-details',
   standalone: true,
+  imports: [CommonModule, RouterModule],
   templateUrl: './products-details.component.html',
   styleUrls: ['./products-details.component.css'],
 })
 export class ProductDetailsComponent implements OnInit {
-  productId: any; // Change to number for better type safety
-  product: any;
+  productId: number | null = null;
+  product: Product | null = null;
+  quantity: number = 1; // Set initial quantity to 1
+  private readonly ERROR_PAGE_PATH = '/error';
+  cartItems: CartItem[] = []; // Use CartItem type
 
-  // Define all your product arrays here
-  storageProducts = [
-    {
-      id: 1001,
-      name: 'Anderson Chest Of Drawers, Mocha',
-      price: 99.0,
-      description:
-        'Proactively communicate corporate process improvements via corporate scenarios.',
-      imageUrl:
-        'https://demos.reytheme.com/beijing/wp-content/uploads/sites/7/2019/06/18-800x534.jpg',
-      status: 'in stock',
-      category: 'Storage',
-    },
-    {
-      id: 1002,
-      name: 'Larsen Wide Chest Of Drawers',
-      price: 189.0,
-      description:
-        'Proactively communicate corporate process improvements via corporate scenarios.',
-      imageUrl:
-        'https://demos.reytheme.com/beijing/wp-content/uploads/sites/7/2019/06/20-800x800.jpg',
-      status: 'in stock',
-      category: 'Storage',
-    },
-    {
-      id: 1003,
-      name: 'Lucien Bedside, Light Mango Wood',
-      price: 159.0,
-      description:
-        'Proactively communicate corporate process improvements via corporate scenarios.',
-      imageUrl:
-        'https://demos.reytheme.com/beijing/wp-content/uploads/sites/7/2019/06/19-800x560.jpg',
-      status: 'in stock',
-      category: 'Storage',
-    },
-    {
-      id: 1004,
-      name: 'Lucien Wide Chest of Drawers',
-      price: 299.0,
-      description:
-        'Proactively communicate corporate process improvements via corporate scenarios.',
-      imageUrl:
-        'https://demos.reytheme.com/beijing/wp-content/uploads/sites/7/2019/06/21.jpg',
-      status: 'in stock',
-      category: 'Storage',
-    },
-  ];
-
-  lightingProducts = [
-    {
-      id: 2001,
-      name: 'Albert Ceiling Spotlight Bar, Charcoal',
-      price: 289.0,
-      description:
-        'Proactively communicate corporate process improvements via corporate scenarios. Progressively aggregate proactive data after diverse users. Rapidiously redefine front-end interfaces before go forward process improvements.',
-      imageUrl:
-        'https://demos.reytheme.com/beijing/wp-content/uploads/sites/7/2019/06/28-800x652.jpg',
-      category: 'Lighting',
-      status: 'in stock',
-    },
-    {
-      id: 2002,
-      name: 'Chicago Large Pendant, Green & Brass',
-      price: 129.0,
-      description:
-        'Proactively communicate corporate process improvements via corporate scenarios. Progressively aggregate proactive data after diverse users. Rapidiously redefine front-end interfaces before go forward process improvements.',
-      imageUrl:
-        'https://demos.reytheme.com/beijing/wp-content/uploads/sites/7/2019/06/30-800x800.jpg',
-      category: 'Lighting',
-      status: 'in stock',
-    },
-    {
-      id: 2003,
-      name: 'Gigi Tilting Pendant Chandelier Light',
-      price: 89.0,
-      description:
-        'Proactively communicate corporate process improvements via corporate scenarios. Progressively aggregate proactive data after diverse users. Rapidiously redefine front-end interfaces before go forward process improvements.',
-      imageUrl:
-        'https://demos.reytheme.com/beijing/wp-content/uploads/sites/7/2019/06/1-13.jpg',
-      category: 'Lighting',
-      status: 'in stock',
-    },
-    {
-      id: 2004,
-      name: 'Java Shade Small, Natural Rattan',
-      price: 189.0,
-      description:
-        'Proactively communicate corporate process improvements via corporate scenarios. Progressively aggregate proactive data after diverse users. Rapidiously redefine front-end interfaces before go forward process improvements.',
-      imageUrl:
-        'https://demos.reytheme.com/beijing/wp-content/uploads/sites/7/2019/06/1-12.jpg',
-      category: 'Lighting',
-      status: 'in stock',
-    },
-  ];
-
-  chairsProducts = [
-    {
-      imageUrl: '/assets/IMGS/chair1.jpg',
-      name: 'Herman Arm Chair, Finch Grey Cotton',
-      id: 3001,
-      category: 'chairs',
-      price: 199,
-      status: 'in stock',
-    },
-
-    {
-      imageUrl: '/assets/imgs/chair2.jpg',
-      name: 'Knox Accent Chair, Natal Print',
-      id: 3002,
-      category: 'chairs',
-      price: 399,
-      status: 'in stock',
-    },
-
-    {
-      imageUrl: '/assets/imgs/chair3.jpg',
-      name: 'Osmond Armchair, Ink Blue Velvet',
-      id: 3003,
-      category: 'chairs',
-      price: 280,
-      status: 'in stock',
-    },
-
-    {
-      imageUrl: '/assets/imgs/chair4.jpg',
-      name: 'Lule Dining Chairs, Royal Yellow',
-      id: 3004,
-      category: 'chairs',
-      price: 370,
-      status: 'in stock',
-    },
-
-    {
-      imageUrl: '/assets/Imgs/chair5.jpg',
-      name: 'Stanley Accent Chair, Chestnut Brown',
-      id: 3005,
-      category: 'chairs',
-      price: 280,
-      status: 'in stock',
-    },
-  ];
-
-
-  bedsProducts = [
-    {
-      id: 4001,
-      name: 'Delia King Size Bed, Marine Velvet',
-      price: 399.0,
-      description:
-        'Proactively communicate corporate process improvements via corporate scenarios. Progressively aggregate proactive data after diverse users. Rapidiously redefine front-end interfaces before go forward process improvements.',
-      imageUrl:
-        'https://demos.reytheme.com/beijing/wp-content/uploads/sites/7/2019/06/26.jpg',
-      category: 'bed',
-      status: 'in stock',
-    },
-    {
-      id: 4002,
-      name: 'Essentials Kano Platform Double Bed',
-      price: 449.0,
-      description:
-        'Proactively communicate corporate process improvements via corporate scenarios. Progressively aggregate proactive data after diverse users. Rapidiously redefine front-end interfaces before go forward process improvements.',
-      imageUrl:
-        'https://demos.reytheme.com/beijing/wp-content/uploads/sites/7/2019/06/23.jpg',
-      category: 'bed',
-      status: 'in stock',
-    },
-    {
-      id: 4003,
-      name: 'Hyron Guest Bed with 2 Mattresses',
-      price: 339.0, //after discount //before discount 449
-      description:
-        'Proactively communicate corporate process improvements via corporate scenarios. Progressively aggregate proactive data after diverse users. Rapidiously redefine front-end interfaces before go forward process improvements.',
-      imageUrl:
-        'https://demos.reytheme.com/beijing/wp-content/uploads/sites/7/2019/06/25-600x450.jpg',
-      category: 'bed',
-      status: 'in stock',
-    },
-    {
-      id: 4004,
-      name: 'Kavaro 3000 Pocket Natural Kingsize',
-      price: 489.0,
-      description:
-        'Proactively communicate corporate process improvements via corporate scenarios. Progressively aggregate proactive data after diverse users. Rapidiously redefine front-end interfaces before go forward process improvements.',
-      imageUrl:
-        'https://demos.reytheme.com/beijing/wp-content/uploads/sites/7/2019/06/22.jpg://demos.reytheme.com/beijing/wp-content/uploads/sites/7/2019/06/25-600x450.jpg',
-      category: 'bed',
-      status: 'in stock',
-    },
-    {
-      id: 4005,
-      name: 'Roscoe King Size Bed, Aegean Blue',
-      price: 429.0,
-      description:
-        'Proactively communicate corporate process improvements via corporate scenarios. Progressively aggregate proactive data after diverse users. Rapidiously redefine front-end interfaces before go forward process improvements.',
-      imageUrl:
-        'https://demos.reytheme.com/beijing/wp-content/uploads/sites/7/2019/06/24.jpg',
-      category: 'bed',
-      status: 'in stock',
-    },
-  ];
-
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private productService: ProductsService,
+    private cartService: CartService
+  ) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
-      this.productId = +params['id']; // Convert the ID to a number
-      this.fetchProductDetails(this.productId);
+      this.productId = +params['id'];
+      this.fetchProductDetails();
     });
+
+    this.cartItems = this.cartService.getCartItems(); // Load cart items in the same ngOnInit
   }
 
-  fetchProductDetails(id:number): void {
-    // Collect all product arrays into a single array
-    const allProducts = [
-      ...this.storageProducts,
-      ...this.lightingProducts,
-      ...this.bedsProducts,
-      ...this.chairsProducts,
-      // Add more product arrays here as needed
-    ];
+  private fetchProductDetails(): void {
+    if (this.productId === null) {
+      this.handleProductError('Product ID is null');
+      return;
+    }
 
-    // Search for the product in the combined array
-    this.product = allProducts.find((p) => p.id === id);
+    const product = this.productService.getProductById(this.productId);
 
-    // Handle case where product isn't found
-    if (!this.product) {
-      console.error('Product not found');
+    if (product !== null) {
+      this.product = product;
+    } else {
+      this.handleProductError('Product not found');
+    }
+  }
+
+  private handleProductError(message: string): void {
+    console.error(message);
+    this.router.navigate([this.ERROR_PAGE_PATH]);
+  }
+
+  increaseQuantity(): void {
+    this.quantity++;
+  }
+
+  decreaseQuantity(): void {
+    if (this.quantity > 1) {
+      this.quantity--;
+    }
+  }
+
+  addToCart(): void {
+    if (this.product) {
+      this.cartService.addToCart(this.product, this.quantity); // Use existing product and quantity
+      this.cartItems = this.cartService.getCartItems(); // Update local cart items
+    }
+  }
+
+  // removeFromCart(productId: number) {
+  //   this.cartService.removeFromCart(productId);
+  //   this.cartItems = this.cartService.getCartItems(); // Update local cart items
+  // }
+
+  // clearCart() {
+  //   this.cartService.clearCart();
+  //   this.cartItems = []; // Clear local cart items
+  // }
+
+  // getTotal() {
+  //   return this.cartService.calculateTotal(); // Call calculateTotal from the service
+  // }
+
+  // // Add this method to get the subtotal
+  // calculateSubtotal() {
+  //   return this.cartService.getSubtotal(); // Call getSubtotal from the service
+  // }
+
+  addToWishlist(event: Event): void {
+    event.preventDefault();
+    if (this.product) {
+      this.productService.addToWishlist(this.product);
     }
   }
 }

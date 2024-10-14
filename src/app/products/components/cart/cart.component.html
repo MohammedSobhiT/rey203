@@ -1,0 +1,183 @@
+<!-- ViewCart-Page |START -->
+<!-- CartProgress-start -->
+<div class="cartProgress">
+  <div class="container">
+    <h1>Cart</h1>
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="progress-title">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+            <path
+              d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-111 111-47-47c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l64 64c9.4 9.4 24.6 9.4 33.9 0L369 209z"
+            />
+          </svg>
+          <a href="">Shopping Bag</a>
+          <p>View your items</p>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <div class="progress-title">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+            <path
+              d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-111 111-47-47c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l64 64c9.4 9.4 24.6 9.4 33.9 0L369 209z"
+            />
+          </svg>
+          <a href="">Shipping and Checkout</a>
+          <p>Enter your details</p>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <div class="progress-title">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+            <path
+              d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-111 111-47-47c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l64 64c9.4 9.4 24.6 9.4 33.9 0L369 209z"
+            />
+          </svg>
+          <a href="">Confirmation</a>
+          <p>Review your order!</p>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="progress progress-hight"
+      role="progressbar"
+      aria-label="Basic example"
+      aria-valuenow="75"
+      aria-valuemin="0"
+      aria-valuemax="100"
+    >
+      <div class="progress-bar progress-color"></div>
+    </div>
+  </div>
+</div>
+<!-- CartProgress-end -->
+
+<!-- Free Shipping-start -->
+<div class="freeShiping">
+  <div class="container">
+    <div class="shiping-title">
+      <h4>Free shipping!</h4>
+      <div class="shiping-shape"></div>
+    </div>
+
+    <div class="product-container">
+      <div class="row">
+        <div class="col-lg-7 product-title">
+          <h6>Product</h6>
+        </div>
+        <div class="col-lg-3 product-title">
+          <h6>Price</h6>
+        </div>
+        <div class="col-lg-1 product-title">
+          <h6>Quantity</h6>
+        </div>
+        <div class="col-lg-1 product-title">
+          <h6>Subtotal</h6>
+        </div>
+      </div>
+
+      <!-- Loop through cart items -->
+      <div *ngFor="let item of cartItems" class="row product-content">
+        <div class="col-lg-1">
+          <img [src]="item.imageUrl" alt="" />
+        </div>
+        <div class="col-lg-6">
+          <h2>{{ item.name }}</h2>
+          <div class="product-remove" (click)="removeFromCart(item.id)">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+              <path
+                d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"
+              />
+            </svg>
+            <p>REMOVE</p>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <h3>£{{ item.price }}</h3>
+        </div>
+        <div class="col-lg-1">
+          <div class="product-count">
+            <div>
+              <span
+                class="munis"
+                (click)="updateQuantity(item.id, item.quantity - 1)"
+                >-</span
+              >
+              <span class="numbers">{{ item.quantity }}</span>
+              <span
+                class="plus"
+                (click)="updateQuantity(item.id, item.quantity + 1)"
+                >+</span
+              >
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-1">
+          <h4>£{{ item.price * item.quantity }}</h4>
+        </div>
+      </div>
+
+      <div class="coupon-code">
+        <form (submit)="applyCoupon(); $event.preventDefault()">
+          <input
+            type="text"
+            placeholder="Coupon Code"
+            [(ngModel)]="couponCode"
+          />
+          <button type="submit">Apply Coupon</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Free Shipping-end -->
+
+<!-- Interested In-start -->
+<div class="interested-in">
+  <div class="container">
+    <div class="interes-titles">
+      <h3>You may be interested in…</h3>
+      <h3>Cart totals</h3>
+    </div>
+
+    <div class="row product-option">
+      <div class="col-lg-6 recommended-container">
+        <div class="row">
+          <div *ngFor="let item of recommendedItems" class="col-lg-6">
+            <div class="recommended-item">
+              <img [src]="item.imageUrl" alt="{{ item.name }}" />
+              <h5>{{ item.name }}</h5>
+              <p>£{{ item.price }}</p>
+              <button (click)="addToCart(item)">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 cart-container">
+        <table class="cart-table">
+          <tbody>
+            <tr class="card-data">
+              <th>Subtotal</th>
+              <td>£{{ calculateSubtotal() }}</td>
+            </tr>
+            <tr class="card-data">
+              <th>Shipping</th>
+              <td>Free</td>
+            </tr>
+            <tr class="card-data">
+              <th>Total</th>
+              <td>£{{ getTotal() }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Interested In-end -->
+

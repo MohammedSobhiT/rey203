@@ -1,45 +1,54 @@
-<!-- Products-start -->
-<div class="products-content">
+<div class="products-content" *ngIf="product">
   <div class="container">
     <div class="row">
       <div class="col-lg-6 product-left">
         <img [src]="product.imageUrl" [alt]="product.name" />
       </div>
-
+      
       <div class="col-lg-6 product-right">
         <div class="product-category">
           <div class="category-name">
-            <a href="">{{ product.category }}</a> <!-- Dynamic Category -->
+            <a [routerLink]="['/category', product.category.toLowerCase()]">{{ product.category }}</a>
           </div>
           <div class="category-arrows">
             <!-- Arrows SVGs here -->
           </div>
         </div>
-
+        
         <div class="product-description">
           <h1>{{ product.name }}</h1>
-          <h6>£{{ product.price }}</h6>
-          <p>{{ product.description }}</p>
-
+          <h6>£{{ product.price.toFixed(2) }}</h6>
+          
           <div class="product-card">
             <div class="addToCard">
               <div class="numbers">
-                <span class="minus">-</span>
-                <span class="number">1</span>
-                <span class="plus">+</span>
+                <button 
+                  class="minus" 
+                  (click)="decreaseQuantity()" 
+                  [disabled]="quantity === 1"
+                  aria-label="Decrease Quantity">
+                  -
+                </button>
+                <span class="number">{{ quantity }}</span>
+                <button 
+                  class="plus" 
+                  (click)="increaseQuantity()" 
+                  aria-label="Increase Quantity">
+                  +
+                </button>
               </div>
               <div class="card-button">
-                <button>ADD TO CART</button> <!-- Fixed typo -->
+                <button (click)="addToCart()" aria-label="Add to Cart">Add to Cart</button>
               </div>
             </div>
             <div class="addToWishlist">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true">
                 <!-- Wishlist SVG here -->
               </svg>
-              <a href="">ADD TO WISHLIST</a>
+              <button (click)="addToWishlist($event)" aria-label="Add to Wishlist">ADD TO WISHLIST</button>
             </div>
           </div>
-
+          
           <div class="icons-container">
             <p>Category: {{ product.category }}</p>
             <div class="icons">
@@ -52,6 +61,3 @@
     </div>
   </div>
 </div>
-<!-- Products-end -->
-<!-- Description-start -->
-<!-- Add your description and reviews section here -->

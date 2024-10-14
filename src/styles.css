@@ -34,7 +34,7 @@ body {
   font-family: "Lato", sans-serif !important;
   color: #484f56;
   overflow-x: hidden;
- 
+ cursor: none;
 }
 
 .bText {
@@ -56,3 +56,15 @@ body {
   width: 100%;
 }
 
+.circle {
+  mix-blend-mode: difference;
+  height: 24px;
+  width: 24px;
+  border-radius: 24px;
+  background-color: white;
+  position: fixed; 
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 99999999; /* so that it stays on top of all other elements */
+}

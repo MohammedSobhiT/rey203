@@ -6,7 +6,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { CommonModule, NgFor } from '@angular/common';
-import { FooterComponent } from "./shared/footer/footer.component";
+import { FooterComponent } from "./shared/components/footer/footer.component";
+import { LandingComponent } from "./products/components/landing/landing.component";
 
 
 @Component({
@@ -20,7 +21,8 @@ import { FooterComponent } from "./shared/footer/footer.component";
     MatSlideToggleModule,
     CommonModule,
     NgFor,
-    FooterComponent
+    FooterComponent,
+    LandingComponent
 ],
 
   templateUrl: './app.component.html',
