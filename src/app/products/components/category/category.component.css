@@ -37,7 +37,7 @@
 }
 
 .chairImg {
-  max-width: 100%;
+  max-width: 90%;
   transition: transform 750ms;
   cursor: pointer;
 }
@@ -85,10 +85,12 @@
   position: relative;
   bottom: -21px;
   transition: 0.5s;
+  width: 85%;
+  align-self: flex-start;
 }
 
 .chairCard:hover .view {
-  bottom: -2px;
+  bottom: 1px;
 }
 
 .chairCard:hover .price span {

@@ -138,46 +138,54 @@
 <!-- Interested In-start -->
 <div class="interested-in">
   <div class="container">
-    <div class="interes-titles">
-      <h3>You may be interested in…</h3>
-      <h3>Cart totals</h3>
-    </div>
-
-    <div class="row product-option">
-      <div class="col-lg-6 recommended-container">
+    <div class="row">
+      <div class="col-lg-8">
+        <h3>You may be interested in…</h3>
         <div class="row">
           <div *ngFor="let item of recommendedItems" class="col-lg-6">
-            <div class="recommended-item">
-              <img [src]="item.imageUrl" alt="{{ item.name }}" />
-              <h5>{{ item.name }}</h5>
-              <p>£{{ item.price }}</p>
-              <button (click)="addToCart(item)">Add to Cart</button>
+            <div class="chairCard" >
+              <div class="img">
+                <img [src]="item.imageUrl" [alt]="item.name" class="chairImg" [routerLink]="['/details', item.id]"/>
+              </div>
+              <div class="info">
+                <div class="pname">{{ item.name }}</div>
+              </div>
+              <div class="price">
+                <span>{{ item.price }}$</span>
+                <div class="view">
+                  <p class="gText hover" (click)="addToCart(item)">ADD TO CART</p>
+                  <p class="gText hover">QUICKVIEW</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-
-      <div class="col-lg-6 cart-container">
-        <table class="cart-table">
-          <tbody>
-            <tr class="card-data">
-              <th>Subtotal</th>
-              <td>£{{ calculateSubtotal() }}</td>
-            </tr>
-            <tr class="card-data">
-              <th>Shipping</th>
-              <td>Free</td>
-            </tr>
-            <tr class="card-data">
-              <th>Total</th>
-              <td>£{{ getTotal() }}</td>
-            </tr>
-          </tbody>
-        </table>
+      
+      <div class="col-lg-4" *ngIf="cartItems.length > 0">
+        <h3>Cart totals</h3>
+        <div class="cart-container">
+          <table class="cart-table">
+            <tbody>
+              <tr class="card-data">
+                <th>Subtotal</th>
+                <td>£{{ calculateSubtotal() }}</td>
+              </tr>
+              <tr class="card-data">
+                <th>Shipping</th>
+                <td>Free</td>
+              </tr>
+              <tr class="card-data">
+                <th>Total</th>
+                <td>£{{ getTotal() }}</td>
+              </tr>
+            </tbody>
+          </table>
+          <button><a href="#">Proceed to checkout</a></button>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
 <!-- Interested In-end -->
-
