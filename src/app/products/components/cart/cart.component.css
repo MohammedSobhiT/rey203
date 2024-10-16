@@ -114,12 +114,16 @@
 .product-content h3 {
   font-size: 14px;
   font-weight: 300;
-  padding: 20px 20px 20px 0px;
+  padding: 13px;
+}
+.count {
+  display: flex;
+  align-items: center;
 }
 
 .product-count {
   border: 1px solid #e7eaeb;
-  padding: 5px;
+  padding: 8px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -133,23 +137,30 @@
   align-items: center;
   font-size: 12px;
   font-weight: 900;
+ 
 }
+
+.product-count span {
+  padding:  0px 3px;
+}
+
 
 .product-count .numbers {
   border-left: 2px solid #e7eaeb;
   border-right: 2px solid #e7eaeb;
-  padding: 0px 10px;
+  padding: 0px 5px;
 }
 
 .product-content h4 {
   font-size: 14px;
   font-weight: bold;
-  padding: 20px;
+  padding: 25px;
   margin: 0px;
 }
 
 .coupon-code {
   margin: 50px 0px 40px;
+  display: flex;
 }
 
 .coupon-code input {
@@ -170,7 +181,7 @@
 .coupon-code button {
   border: none;
   background-color: #eaedf0;
-  padding: 13px 20px;
+  padding: 10px 13px;
   margin-left: 5px;
   border-radius: 5px;
   font-size: 13px;

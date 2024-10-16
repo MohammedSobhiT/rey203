@@ -5,7 +5,7 @@
 }
 
 .product-left img {
-  max-width: 100%;
+  max-width: 80%;
 }
 
 .product-right a {
@@ -87,6 +87,12 @@
   font-size: 17px;
 }
 
+.numbers button {
+  width: 100%;
+  font-size: 17px;
+  background-color: #fff;
+}
+
 .number {
   border-left: 2px solid #aaadb0;
   border-right: 2px solid #aaadb0;
@@ -117,13 +123,17 @@
   margin-left: 20px;
 }
 
-.addToWishlist a {
+.addToWishlist button {
   margin-left: 5px;
   font-size: 13px;
   position: relative;
+  background-color: #fff;
+  color: #353b41;
+  font-weight: bold;
+
 }
 
-.addToWishlist a::after {
+.addToWishlist button::after {
   content: " ";
   width: 0px;
   border: 1px solid rgb(255, 255, 255);
@@ -133,10 +143,10 @@
   transition: 0.3s;
 }
 
-.addToWishlist a:hover::after {
+.addToWishlist button:hover::after {
   cursor: pointer;
   border: 1px solid rgb(0, 0, 0);
-  width: 90%;
+  width: 100%;
 }
 
 .icons-container P {
@@ -189,18 +199,20 @@
   font-size: 16px;
   font-weight: 300;
   margin-bottom: 20px;
-  width: 75%;
+  width: 80%;
+}
+
+.description-info h5 {
+  font-size: 16px;
+  color: #484f56;
 }
 
 .description-text {
   margin-bottom: 0px !important;
 }
 
-.description-info a {
-  text-decoration: none;
-}
-
 .description-info h6 {
+  font-size: 16px;
   font-weight: bold;
 }
 
@@ -367,5 +379,6 @@
     flex-direction: column;
   }
 }
-
+/* Review-end */
+/* Description-end */
 /* Products-Description-page| END */
