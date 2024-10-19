@@ -101,10 +101,44 @@
 .view .gText {
   cursor: pointer;
   transition: 0.3s;
+  position: relative;
 }
 
 .view .gText:hover {
   color: #007bff;
+}
+
+.view .gText::after{
+  content: " ";
+  width:100%;
+  border: 1px solid #484f56;
+  position: absolute;
+  top: 100%;
+  left: 0;
+
+}
+
+.view .gText:hover::after {
+  animation-name: lineShape;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes lineShape {
+  10% {
+    opacity: 0;
+    width: 0px;
+}
+
+20% {
+    opacity: 1;
+    width: 50%;
+}
+
+30% {
+    opacity: 1;
+    width: 100%;
+}
 }
 
 .view i {
