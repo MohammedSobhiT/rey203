@@ -62,9 +62,9 @@
         <div class="navLogin">
           <div class="cart" routerLink="/cart">
             <i class="fa-sharp fa-solid fa-cart-shopping"></i>
-            <span class="shopping-bag-numbers">{{cartItemCount}}</span>
+            <span class="shopping-bag-numbers">{{ cartItemCount }}</span>
           </div>
-          <i class="fa-sharp fa-solid fa-user" routerLink="/login" ></i>
+          <i class="fa-sharp fa-solid fa-user" [routerLink]="['/auth']"></i>
         </div>
       </div>
     </nav>

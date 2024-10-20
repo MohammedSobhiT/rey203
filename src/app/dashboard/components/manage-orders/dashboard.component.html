@@ -1,0 +1,74 @@
+<section>
+  <div class="container d-flex justify-content-center">
+    <div class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button
+          class="nav-link active notSlected"
+          id="add-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#add"
+          type="button"
+          role="tab"
+          aria-controls="add"
+          aria-selected="true"
+        >
+          Edit/Add Product
+        </button>
+      </li>
+    </div>
+  </div>
+  <div class="d-flex justify-content-around">
+    <button class="adminButton my-5" (click)="addNewProduct()">
+      Add New Product
+    </button>
+  </div>
+  <div class="tab-content" id="myTabContent">
+    <!-- Edit/Add Product Tab -->
+    <div
+      class="tab-pane fade show active"
+      id="add"
+      role="tabpanel"
+      aria-labelledby="add-tab"
+    >
+      <div class="container adminPage">
+        <div *ngFor="let product of products" class="row orderItem">
+          <div
+            class="col-2 p-4 d-flex justify-content-center"
+            [attr.id]="product.id"
+          >
+            <img
+              [src]="product.imageUrl"
+              alt="{{ product.name }}"
+              class="orderImg img-fluid"
+            />
+          </div>
+          <div class="col-7 d-flex align-items-center">
+            <div class="text-center w-100">
+              <h3>{{ product.name }}</h3>
+              <p class="descriptiobAdmin">{{ product.description }}</p>
+            </div>
+          </div>
+          <div class="col-3 d-flex align-items-center">
+            <div class="row w-100">
+              <div class="col-6">
+                <p class="adminCardInfo">
+                  Price: <span>{{ product.price }}</span> EGP
+                </p>
+              </div>
+              <div
+                class="col-6 d-flex align-items-center justify-content-center"
+              >
+                <button class="adminButton2" (click)="editProduct(product)">
+                  Edit
+                </button>
+                <button class="adminButton2" (click)="deleteProduct(product)">
+                  Delete
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

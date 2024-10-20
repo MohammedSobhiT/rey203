@@ -22,6 +22,7 @@ interface Product {
   styleUrls: ['./products-details.component.css'],
 })
 export class ProductDetailsComponent implements OnInit {
+  
   productId: number | null = null;
   product: Product | null = null;
   quantity: number = 1; // Set initial quantity to 1

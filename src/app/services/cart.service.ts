@@ -8,6 +8,7 @@ export interface CartItem {
   price: number;
   imageUrl: string;
   quantity: number;
+  status: string;
 }
 
 @Injectable({
@@ -106,5 +107,13 @@ export class CartService {
     const validCoupons: { [key: string]: number } = { SAVE10: 10, SAVE20: 20 };
     const discount = validCoupons[couponCode.toUpperCase()];
     return discount || null;
+  }
+  // admin dashboard
+  updateCartItem(updatedItem: CartItem) {
+    const index = this.cartItems.findIndex(item => item.id === updatedItem.id);
+    if (index !== -1) {
+      this.cartItems[index] = updatedItem;
+      // Add logic to persist this update if necessary (e.g., API call)
+    }
   }
 }

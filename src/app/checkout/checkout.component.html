@@ -1,0 +1,185 @@
+<div class="container">
+  <div class="checkout-container">
+    <h1>Checkout</h1>
+
+    <div class="container checkout-header">
+      <!-- Checkout steps -->
+      <div class="checkout-step">
+        <h3>
+          <i class="fa-regular fa-square-check" style="font-weight: 100"></i>
+          SHOPPING BAG
+        </h3>
+
+      </div>
+      <div class="checkout-step">
+        <h3>
+          <i class="fa-regular fa-square-check"></i>SHIPPING AND CHECKOUT
+        </h3>
+      </div>
+      <div class="checkout-step" style="color: #71757a">
+        <h3>CONFIRMATION</h3>
+
+      </div>
+    </div>
+
+    <div class="checkout-progress">
+      <div class="checkout-progress-bar"></div>
+    </div>
+
+    <div class="returning-customer">
+      <i class="fa-regular fa-window-maximize"></i><b> Returning customer? Click
+      here to login</b>
+    </div>
+
+    <div class="coupon">
+      <p class="d-inline-flex gap-1">
+        Have a coupon?
+        <a
+          class=""
+          data-bs-toggle="collapse"
+          href="#collapseExample"
+          role="button"
+          aria-expanded="false"
+          aria-controls="collapseExample"
+          style="color: #71757a"
+        >
+          Click here to enter your code
+        </a>
+      </p>
+      <div class="collapse" id="collapseExample">
+        <div class="card-body">
+          <h6>If you have a coupon code, please apply it below.</h6>
+          <input
+            type="text"
+            [(ngModel)]="couponCode"
+            placeholder="Coupon code"
+          />
+          <button (click)="applyCoupon()">Apply Coupon</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form container">
+    <div class="row">
+      <div class="col billing-form">
+        <h6>BILLING DETAILS</h6>
+        <form [formGroup]="billingForm" (ngSubmit)="onSubmit()">
+          <div class="name">
+            <div class="form-group">
+              <label for="first-name">First Name<span>*</span></label>
+              <input type="text" id="first-name" formControlName="firstName" required />
+            </div>
+            <div class="form-group">
+              <label for="last-name">Last Name<span>*</span></label>
+              <input type="text" id="last-name" formControlName="lastName" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="company-name">Company Name (Optional)</label>
+            <input type="text" id="company-name" formControlName="companyName" />
+          </div>
+
+          <div class="form-group">
+            <label for="country">Country/Region<span>*</span></label>
+            <select id="country" formControlName="country" required>
+              <option value="United Kingdom (UK)">United Kingdom (UK)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="street-address">Street Address<span>*</span></label>
+            <input type="text" id="street-address" formControlName="streetAddress" required />
+          </div>
+
+          <div class="form-group">
+            <label for="apartment">Apartment, suite, unit, etc. (optional)</label>
+            <input type="text" id="apartment" formControlName="apartment" />
+          </div>
+
+          <div class="form-group">
+            <label for="town-city">Town/City<span>*</span></label>
+            <input type="text" id="town-city" formControlName="townCity" required />
+          </div>
+
+          <div class="form-group">
+            <label for="county">County (Optional)</label>
+            <input type="text" id="county" formControlName="county" />
+          </div>
+
+          <div class="form-group">
+            <label for="postcode">Postcode<span>*</span></label>
+            <input type="text" id="postcode" formControlName="postcode" required />
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone<span>*</span></label>
+            <input type="text" id="phone" formControlName="phone" required />
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address<span>*</span></label>
+            <input type="email" id="email" formControlName="email" required />
+          </div>
+
+          <div class="additional-information">
+           
+
+            <h4>Additional information</h4>
+            <label for="order-notes" style="font-size: small">ORDER NOTES (OPTIONAL)</label>
+            <textarea
+              id="order-notes"
+              formControlName="orderNotes"
+              placeholder="Notes about your order, e.g. special notes for delivery."
+            ></textarea>
+          </div>
+
+          <button type="button" class="btn btn-dark submit" type="submit">Place Order</button>
+        </form>
+      </div>
+
+      <div class="col your-order">
+        <h6>YOUR ORDER</h6>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">PRODUCT</th>
+              <th scope="col">SUBTOTAL</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of cartItems" class="cart-items">
+              <td class="product-name">
+                <div class="img">
+                  <img [src]="item.imageUrl" alt="{{ item.name }}" />
+                </div>
+                <div class="caption">
+                  <p>{{ item.name }}</p>
+                  <h5>x{{ item.quantity }}</h5>
+                </div>
+              </td>
+              <td>
+                <p>{{ item.price * item.quantity | currency }}</p>
+              </td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr class="cart-subtotal">
+              <th>SUBTOTAL</th>
+              <td>{{ subtotal | currency }}</td>
+            </tr>
+            <tr *ngIf="discount > 0" class="discount">
+              <th>DISCOUNT</th>
+              <td>{{ discount | currency }}</td>
+            </tr>
+            <tr class="order-total">
+              <th>TOTAL</th>
+              <td>{{ total | currency }}</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,45 @@
+<div class="landing">
+  <div class="image">
+    <div class="overlay"></div>
+    <h2>"Designed for Living, Built to Last"</h2>
+  </div>
+
+  <!-- Login Form -->
+  <form id="login-form" class="form">
+    <h1 class="head">Login</h1>
+    <div class="flex-column">
+      <label for="login-email">Email</label>
+      <input id="login-email" placeholder="Enter your Email" class="input email" type="text" required />
+    </div>
+    <div class="flex-column">
+      <label for="login-password">Password</label>
+      <input id="login-password" placeholder="Enter your Password" class="input password" type="password" required />
+    </div>
+    <button type="submit" class="login button-submit">Sign In</button>
+    <p class="p">
+      Don't have an account?
+      <span class="span" (click)="toggleForm()">Sign Up</span>
+    </p>
+  </form>
+
+  <!-- Sign Up Form -->
+  <form id="signup-form" class="form" style="display: none;">
+    <h1 class="head">Sign Up</h1>
+    <div class="flex-column">
+      <label for="signup-email">Email</label>
+      <input id="signup-email" placeholder="Enter your Email" class="input email" type="text" required />
+    </div>
+    <div class="flex-column">
+      <label for="signup-password">Password</label>
+      <input id="signup-password" placeholder="Enter your Password" class="input password" type="password" required />
+    </div>
+    <button type="submit" class="signup button-submit">Sign Up</button>
+    <p class="p">
+      Already have an account?
+      <span class="span" (click)="toggleForm()">Log In</span>
+    </p>
+  </form>
+</div>
+
+<!-- Aside Menu -->
+

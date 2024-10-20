@@ -21,8 +21,8 @@ export interface Product {
 })
 export class CartComponent implements OnInit {
   cartItems: CartItem[] = [];
-  couponCode: string = ''; // line for the coupon code
-  discount: number = 0; // line for discount
+  couponCode: string = '';
+  discount: number = 0;
   recommendedItems: Product[] = [];
   cartItemCount: number = 0;
 
@@ -53,26 +53,30 @@ export class CartComponent implements OnInit {
   }
 
   addToCart(product: Product) {
-    this.cartService.addToCart({ ...product, quantity: 1 }, 1); // Add with initial quantity 1
+    this.cartService.addToCart({ ...product, quantity: 1 }, 1);
   }
 
   removeFromCart(productId: number) {
     this.cartService.removeFromCart(productId);
-    this.cartItems = this.cartService.getCartItems(); // Update local cart items
+    this.cartItems = this.cartService.getCartItems();
   }
 
   clearCart() {
     this.cartService.clearCart();
-    this.cartItems = []; // Clear local cart items
+    this.cartItems = [];
   }
 
   updateQuantity(productId: number, quantity: number) {
     this.cartService.updateQuantity(productId, quantity);
-    this.cartItems = this.cartService.getCartItems(); // Update local cart items
+    this.cartItems = this.cartService.getCartItems();
   }
+
   calculateSubtotal(): number {
-  return this.cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
-}
+    return this.cartItems.reduce(
+      (total, item) => total + item.price * item.quantity,
+      0
+    );
+  }
 
   applyCoupon() {
     const discount = this.cartService.applyCoupon(this.couponCode);
@@ -82,7 +86,7 @@ export class CartComponent implements OnInit {
     } else {
       alert('Invalid coupon code.');
     }
-    this.couponCode = ''; // Clear coupon code input after applying
+    this.couponCode = '';
   }
 
   getTotal() {

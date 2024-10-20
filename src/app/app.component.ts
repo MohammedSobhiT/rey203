@@ -7,10 +7,9 @@ import { MatCardModule } from '@angular/material/card';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { CommonModule, NgFor } from '@angular/common';
 import { FooterComponent } from "./shared/components/footer/footer.component";
-import { LandingComponent } from "./products/components/landing/landing.component";
-import { RegisterComponent } from './auth/components/register/register.component';
-import { LoginComponent } from './auth/components/login/login.component';
 import { Router } from '@angular/router'; 
+import { HttpClientModule } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-root',
@@ -24,10 +23,9 @@ import { Router } from '@angular/router';
     CommonModule,
     NgFor,
     FooterComponent,
-    LandingComponent,
-    RegisterComponent,
-    LoginComponent,
-  ],
+    HttpClientModule,
+   
+],
 
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
@@ -37,9 +35,13 @@ export class AppComponent {
   constructor(private router: Router) {}
   shouldDisplayHeaderFooter(): boolean {
     return (
-      !this.router.url.includes('/login') && !this.router.url.includes('/Register')
+      !this.router.url.includes('/auth')&&
+      
+      !this.router.url.includes('/dashboard')
+      
     );
   }
+  
   ngOnInit(): void {
     AOS.init({
       duration: 1200, // Animation duration in milliseconds

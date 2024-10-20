@@ -1,0 +1,129 @@
+/* body */
+
+.checkout-container {
+  margin: 50px 0px;
+}
+
+.checkout-container h1 {
+  color: #484f56;
+  font-weight: 600;
+}
+
+.checkout-header {
+  margin-bottom: 20px;
+  margin-top: 50px;
+  display: flex;
+}
+
+.checkout-step {
+  width: 600px;
+}
+
+.checkout-step h3 {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.checkout-step p {
+  font-size: 10px;
+  color: #777;
+  font-weight: 100;
+}
+
+.checkout-progress {
+  height: 4px;
+  background-color: #f2f2f2;
+  margin-bottom: 30px;
+  width: 1410px;
+}
+
+.checkout-progress-bar {
+  height: 100%;
+  background-color: #adb5bd;
+  width: 65%;
+}
+
+.returning-customer {
+  background-color: #f8f9fa;
+  padding: 40px;
+  border-radius: 5px;
+  font-weight: 100;
+  height: 95px;
+}
+
+.card-body h6 {
+  font-weight: 100;
+}
+
+.card-body input {
+  width: 1245px;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+.coupon {
+  margin-top: 20px;
+}
+
+/* form */
+
+.billing-form {
+  width: 650px;
+  color: #484f56;
+}
+
+h6 {
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  color: #6d757e;
+}
+.form-group span {
+  color: red;
+}
+
+form input,
+select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.additional-information label,
+p {
+  color: #6d757e;
+  font-weight: 600;
+}
+
+.additional-information {
+  margin-top: 50px;
+}
+
+.additional-information h4 {
+  margin: 40px 0px;
+}
+
+.additional-information textarea {
+  width: 650px;
+}
+:focus::placeholder {
+  color: transparent;
+}
+.your-order {
+  padding-left: 60px;
+}
+.product-name img {
+  width: 70px;
+  height: 85px;
+}
+.cart-items td {
+  width: 400px;
+}
+.your-order table {
+  background-color: #333 !important;
+}
+.submit{
+  width: 100%;
+}

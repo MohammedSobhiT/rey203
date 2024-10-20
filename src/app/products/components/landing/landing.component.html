@@ -286,13 +286,13 @@
         data-aos="fade-up"
         data-aos-delay="100"
       >
-        <div class="cardImgDiv mb-5">
+        <div class="cardImgDiv mb-5" >
           <div class="overflow-hidden">
             <img
               src="/assets/IMGS/card1.jpg"
               alt="Accent Chairs"
               class="imgEffect"
-              routerLink="/chairs"
+             [routerLink]="['/category', 'Chairs']"
             />
           </div>
           <p class="text-uppercase mt-3 text-secondary">Accent Chairs</p>
@@ -304,7 +304,7 @@
         data-aos="fade-up"
         data-aos-delay="200"
       >
-        <div class="cardImgDiv pt-5 mb-5">
+        <div class="cardImgDiv pt-5 mb-5" >
           <div>
             <div class="overflow-hidden">
               <img
@@ -312,7 +312,7 @@
                 src="/assets/IMGS/card2A.jpg"
                 alt="Storage"
                 class="imgEffect"
-                routerLink="/storage"
+                [routerLink]="['/category', 'Storage']"
               />
             </div>
             <p class="text-uppercase mt-3 text-secondary">Storage</p>
@@ -323,7 +323,7 @@
                 src="/assets/IMGS/card2B.jpg"
                 alt="Beds"
                 class="imgEffect mt-4"
-                routerLink="/beds"
+                [routerLink]="['/category', 'Beds']"
               />
             </div>
             <p class="text-uppercase mt-3 text-secondary">Beds</p>
@@ -342,7 +342,7 @@
               src="/assets/IMGS/card3.jpg"
               alt="Tables"
               class="imgEffect"
-              routerLink="/tables"
+             [routerLink]="['/category', 'Tables']"
             />
           </div>
           <p class="text-uppercase mb-3 pt-5 text-secondary">Tables</p>
@@ -360,7 +360,7 @@
               src="/assets/IMGS/card4.jpg"
               alt="lighting"
               class="imgEffect"
-              routerLink="/lighting"
+              [routerLink]="['/category', 'lighting']"
             />
           </div>
           <p class="text-uppercase mt-3 text-secondary">lighting</p>
