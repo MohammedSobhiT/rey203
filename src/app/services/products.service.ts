@@ -68,9 +68,7 @@ export class ProductsService {
       {
         id: 1002,
         name: 'Larsen Wide Chest Of Drawers',
-        price: {
-          oldPrice: 189.0,
-        },
+        price:  189.0,
         description:
           'Proactively communicate corporate process improvements via corporate scenarios.',
         imageUrl:
@@ -82,10 +80,7 @@ export class ProductsService {
       {
         id: 1003,
         name: 'Lucien Bedside, Light Mango Wood',
-        price: {
-          oldPrice: 159.0,
-          newPrice: 130.0,
-        },
+        price: 159.0,
         description:
           'Proactively communicate corporate process improvements via corporate scenarios.',
         imageUrl:
