@@ -14,7 +14,6 @@
 }
 html {
   scroll-behavior: smooth;
-  
 }
 a {
   color: #484f56;
@@ -29,12 +28,11 @@ li {
   padding-right: 35px !important;
 }
 
-
 body {
   font-family: "Lato", sans-serif !important;
   color: #484f56;
-  overflow-x: hidden;
- cursor: none;
+  overflow-x: hidden !important;
+  cursor: none;
 }
 
 .bText {
@@ -62,7 +60,7 @@ body {
   width: 24px;
   border-radius: 24px;
   background-color: white;
-  position: fixed; 
+  position: fixed;
   top: 0;
   left: 0;
   pointer-events: none;
