@@ -78,7 +78,6 @@ export class ProductsService {
         status: 'in stock',
         category: 'Storage',
         isFavorite: true,
-        isSale: true,
       },
       {
         id: 1003,
@@ -93,7 +92,7 @@ export class ProductsService {
           'https://demos.reytheme.com/beijing/wp-content/uploads/sites/7/2019/06/19-800x560.jpg',
         status: 'in stock',
         category: 'Storage',
-        isSale: true,
+        
       },
       {
         id: 1004,
