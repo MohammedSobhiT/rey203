@@ -245,26 +245,37 @@
 <!-- Hero-Page| END -->
 
 <!-- start of our-fav -->
-<div class="slider" id="slider" data-aos="fade-up">
-  <h1 class="text-center fs-2 bText ">OUR FAVORITES</h1>
+<!-- ... other content ... -->
+
+<div class="slider" #slider data-aos="fade-up">
+  <h1 class="text-center fs-2 bText">OUR FAVORITES</h1>
   <p class="text-center">Our weekly picks right here.</p>
-  <div class="slide" id="slide">
-    <img class="item" src="/assets/IMGS/Screenshot 2024-09-30 025130.png">
-    <img class="item" src="/assets/IMGS/Screenshot 2024-09-30 025130.png">
-    <img class="item" src="/assets/IMGS/Screenshot 2024-09-30 025130.png">
-    <img class="item" src="/assets/IMGS/Screenshot 2024-09-30 025130.png">
-    <img class="item" src="/assets/IMGS/Screenshot 2024-09-30 025130.png">
-    <img class="item" src="/assets/IMGS/Screenshot 2024-09-30 025130.png">
-    <img class="item" src="/assets/IMGS/Screenshot 2024-09-30 025130.png">
-    <img class="item" src="/assets/IMGS/Screenshot 2024-09-30 025130.png">
-    <img class="item" src="/assets/IMGS/Screenshot 2024-09-30 025130.png">
-    <img class="item" src="/assets/IMGS/Screenshot 2024-09-30 025130.png">
-    <img class="item" src="/assets/IMGS/Screenshot 2024-09-30 025130.png">
-    <img class="item" src="/assets/IMGS/Screenshot 2024-09-30 025130.png">
+  <div class="slide" #slide>
+    <ng-container *ngFor="let item of favoriteProducts">
+       <div class="chairCard" >
+              <div class="img">
+                <img [src]="item.imageUrl" [alt]="item.name" class="chairImg" [routerLink]="['/details', item.id]"/>
+              </div>
+              <div class="info">
+                <div class="pname">{{ item.name }}</div>
+              </div>
+              <div class="price">
+                <span>{{ item.price }}$</span>
+                <div class="view">
+                  <p class="gText hover" (click)="addToCart(item)">ADD TO CART</p>
+                  <p class="gText hover">QUICKVIEW</p>
+                </div>
+              </div>
+            </div>
+    </ng-container>
   </div>
-  <button class="ctrl-btn pro-prev">Prev</button>
-  <button class="ctrl-btn pro-next">Next</button>
+  <button class="ctrl-btn pro-prev">&lt;</button>
+  <button class="ctrl-btn pro-next">&gt;</button>
 </div>
+
+
+
+<!-- ... other content ... -->
 <!-- end of our-fav -->
 
 <!-- start featuredCategories -->

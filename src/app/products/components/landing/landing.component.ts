@@ -1,80 +1,76 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  AfterViewInit,
+  ElementRef,
+  ViewChild,
+} from '@angular/core';
 import { HeaderComponent } from '../../../shared/components/header/header.component';
 import { VanillaTiltDirective } from '../../../directives/vanilla-tilt.directive';
 import * as AOS from 'aos';
 import { RouterModule } from '@angular/router';
+import { ProductsService, Product } from '../../../services/products.service';
+import { CartService, CartItem } from '../../../services/cart.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-landing',
   standalone: true,
-  imports: [ HeaderComponent, VanillaTiltDirective, RouterModule],
+  imports: [HeaderComponent, VanillaTiltDirective, RouterModule, CommonModule],
   templateUrl: './landing.component.html',
-  styleUrls: ['./landing.component.css'], // <-- Corrected styleUrls
+  styleUrls: ['./landing.component.css'],
 })
-export class LandingComponent implements OnInit {
+export class LandingComponent implements OnInit, AfterViewInit {
+  favoriteProducts: Product[] = [];
+  @ViewChild('slider') slider!: ElementRef;
+  @ViewChild('slide') slide!: ElementRef;
+  currentIndex = 0;
+
+  constructor(
+    private cartService: CartService,
+    private productsService: ProductsService
+  ) {}
+
   ngOnInit(): void {
+    this.loadFavProducts();
     AOS.init({
-      duration: 1200, // Animation duration in milliseconds
-      once: true, // Whether animation should happen only once
+      duration: 1200,
+      once: true,
     });
-
-    this.productScroll(); // Call the productScroll function
+  }
+  loadFavProducts(): void {
+    this.productsService.getFavoriteProducts().subscribe((products: Product[]) => {
+      this.favoriteProducts = products;
+    });
+    console.log(this.favoriteProducts);
+  }
+  ngAfterViewInit(): void {
+    this.initializeProductScroll();
   }
 
-  productScroll() {
-    let slider = document.getElementById('slider') as HTMLElement;
-    let next = document.getElementsByClassName(
-      'pro-next'
-    ) as HTMLCollectionOf<HTMLElement>;
-    let prev = document.getElementsByClassName(
-      'pro-prev'
-    ) as HTMLCollectionOf<HTMLElement>;
-    let slide = document.getElementById('slide') as HTMLElement;
-    let item = document.getElementById('slide') as HTMLElement;
+  initializeProductScroll(): void {
+    const slider = this.slider.nativeElement;
+    const slide = this.slide.nativeElement;
+    const next = slider.querySelector('.pro-next');
+    const prev = slider.querySelector('.pro-prev');
 
-    for (let i = 0; i < next.length; i++) {
-      let position = 0; // Slider position
-
-      prev[i].addEventListener('click', () => {
-        if (position > 0) {
-          position -= 2;
-          this.translateX(position, slide);
-        }
-      });
-
-      next[i].addEventListener('click', () => {
-        if (position >= 0 && position < this.hiddenItems(slider, item)) {
-          position += 2;
-          this.translateX(position, slide);
-        }
-      });
-    }
+    next.addEventListener('click', () => this.moveSlide(1));
+    prev.addEventListener('click', () => this.moveSlide(-1));
   }
 
-  hiddenItems(slider: HTMLElement, item: HTMLElement): number {
-    let items = this.getCount(item, false);
-    let visibleItems = slider.offsetWidth / 210;
-    return items - Math.ceil(visibleItems);
+  moveSlide(direction: number): void {
+    const totalSlides = Math.ceil(this.favoriteProducts.length / 3);
+    this.currentIndex =
+      (this.currentIndex + direction + totalSlides) % totalSlides;
+    this.updateSlidePosition();
   }
 
-  translateX(position: number, slide: HTMLElement): void {
-    slide.style.left = position * -210 + 'px';
+  updateSlidePosition(): void {
+    const slide = this.slide.nativeElement;
+    const slideWidth = slide.offsetWidth;
+    slide.style.transform = `translateX(-${this.currentIndex * slideWidth}px)`;
   }
-
-  getCount(parent: HTMLElement, getChildrensChildren: boolean): number {
-    let relevantChildren = 0;
-    let children = parent.childNodes.length;
-    for (let i = 0; i < children; i++) {
-      if (parent.childNodes[i].nodeType !== 3) {
-        if (getChildrensChildren) {
-          relevantChildren += this.getCount(
-            parent.childNodes[i] as HTMLElement,
-            true
-          );
-        }
-        relevantChildren++;
-      }
-    }
-    return relevantChildren;
+  addToCart(product: Product) {
+    this.cartService.addToCart({ ...product, quantity: 1 }, 1);
   }
 }

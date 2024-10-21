@@ -1,0 +1,37 @@
+<section>
+  <div class="charisHome">
+    <h2 class="gText text-uppercase fw-bolder ms-3 mb-4">Sales</h2>
+  </div>
+</section>
+
+<section>
+  <div class="container-fluid gallery">
+    <div class="row">
+      <div
+        class="col-sm-6 col-md-4 col-lg-3"
+        *ngFor="let product of saleProducts"
+      >
+        <div class="chairCard">
+          <div class="img">
+            <img [src]="product.imageUrl" [alt]="product.name" class="chairImg" [routerLink]="['/details', product.id]"/>
+          </div>
+          <div class="info">
+            <p class="pstatus">{{ product.status }}</p>
+            <div class="pname">{{ product.name }}</div>
+          </div>
+          <div class="price">
+            <span>
+              <del *ngIf="product.isSale">{{ product.price }}$</del>
+              <ins *ngIf="product.isSale">{{ product.salePrice }}$</ins>
+              <span *ngIf="!product.isSale">{{ product.price }}$</span>
+            </span>
+            <div class="view">
+              <p class="gText hover" (click)="addToCart(product)">ADD TO CART</p>
+              <p class="gText hover">QUICKVIEW</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

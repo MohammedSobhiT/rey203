@@ -193,69 +193,134 @@ svg {
 
 .slider {
   width: 100%;
-  height: 400px;
+  max-width: 1200px;
+  height: 500px;
   position: relative;
   margin: auto;
-  overflow-x: scroll;
-  overflow-y: hidden;
-}
-.slider h1 {
-  margin-bottom: 0;
-}
-.slider p {
-  color:#484f56;
+  overflow: hidden;
 }
 
-.slider::-webkit-scrollbar {
-  display: none;
-}
+
 
 .slider .slide {
   display: flex;
   position: absolute;
   left: 0;
-  transition: 0.3s left ease-in-out;
-  height: 400px;
+  transition: 0.3s transform ease-in-out;
+  height: 300px;
+  width: 100%;
 }
 
-.slider .item {
-  margin-right: 10px;
+
+.chairCard {
+  transition: 0.8s ease-in-out;
+  cursor: pointer;
+  margin-bottom: 30px;
+
+}
+
+.img {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  width: 300px;
+}
+
+.chairImg {
   max-width: 100%;
-  aspect-ratio: 1/1;
-  /* object-fit: contain; */
+  transition: transform 750ms;
+    height: 250px;
 }
 
-.slider .item:last-child {
-  margin-right: 0;
+.chairCard:hover .chairImg {
+  transform: scale(1.1);
 }
 
-.ctrl {
-  text-align: center;
-  margin-top: 5px;
+.info {
+  height: 50px;
+  padding: 10px 0;
 }
+
+.pname {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.price {
+  color: #2c2c2c;
+  font-weight: bold;
+  height: 20px;
+  overflow: hidden;
+  position: relative;
+  transition: 0.5s;
+}
+
+.price span {
+  position: absolute;
+  top: -2px;
+  transition: 0.5s;
+}
+
+.view {
+  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  bottom: -21px;
+  transition: 0.5s;
+  width: 70%;
+  align-self: flex-start;
+}
+
+.chairCard:hover .view {
+  bottom: -2px;
+}
+
+.chairCard:hover .price span {
+  top: -21px;
+}
+
 
 .ctrl-btn {
-  padding: 20px 20px;
-  min-width: 50px;
-  background: #fff;
+  padding: 10px 15px;
+  background: rgba(255, 255, 255, 0.7);
   border: none;
+  border-radius: 50%;
   font-weight: 600;
   text-align: center;
   cursor: pointer;
   outline: none;
   position: absolute;
-  top: 0;
-  
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  transition: background 0.3s ease;
+}
+
+.ctrl-btn:hover {
+  background: rgba(255, 255, 255, 0.9);
 }
 
 .ctrl-btn.pro-prev {
-  left: 0;
+  left: 10px;
 }
 
 .ctrl-btn.pro-next {
-  right: 0;
+  right: 10px;
 }
 
+@media (max-width: 768px) {
+  .slider .item {
+    flex: 0 0 calc(50% - 20px);
+  }
+}
+
+@media (max-width: 480px) {
+  .slider .item {
+    flex: 0 0 calc(100% - 20px);
+  }
+}
 /* /////////////////////// */
 .stories {
   margin-top: 100px;

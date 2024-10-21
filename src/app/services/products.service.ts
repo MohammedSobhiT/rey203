@@ -1,23 +1,29 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { DashboardService } from './dashboard.service';
+import { map } from 'rxjs/operators';
 export interface CartItem {
-status: any;
+  status: any;
   id: number;
   name: string;
   price: number;
   quantity: number;
   imageUrl: string;
 }
+
 export interface Product {
   id: number;
   name: string;
-  price: number;
+  price: any;
   description: string;
   imageUrl: string;
   status: string;
   category: string;
+  isFavorite?: boolean;
+  isSale?: boolean;
+  salePrice?: number;
 }
+
 @Injectable({
   providedIn: 'root',
 })
@@ -28,11 +34,13 @@ export class ProductsService {
   cart$ = this.cartSubject.asObservable();
   private wishlistSubject = new BehaviorSubject<any[]>([]);
   wishlist$ = this.wishlistSubject.asObservable();
+
   constructor(private dashboardService: DashboardService) {
     this.loadInitialProducts();
     this.loadCart();
     this.loadWishlist();
   }
+
   private loadInitialProducts(): void {
     const storedProducts = this.dashboardService.loadProducts();
     if (storedProducts.length > 0) {
@@ -41,6 +49,7 @@ export class ProductsService {
       this.allProductsSubject.next(this.getDefaultProducts());
     }
   }
+
   private getDefaultProducts(): Product[] {
     return [
       {
@@ -53,28 +62,38 @@ export class ProductsService {
           'https://demos.reytheme.com/beijing/wp-content/uploads/sites/7/2019/06/18-800x534.jpg',
         status: 'in stock',
         category: 'Storage',
+        isFavorite: true,
+        isSale: true,
       },
       {
         id: 1002,
         name: 'Larsen Wide Chest Of Drawers',
-        price: 189.0,
+        price: {
+          oldPrice: 189.0,
+        },
         description:
           'Proactively communicate corporate process improvements via corporate scenarios.',
         imageUrl:
           'https://demos.reytheme.com/beijing/wp-content/uploads/sites/7/2019/06/20-800x800.jpg',
         status: 'in stock',
         category: 'Storage',
+        isFavorite: true,
+        isSale: true,
       },
       {
         id: 1003,
         name: 'Lucien Bedside, Light Mango Wood',
-        price: 159.0,
+        price: {
+          oldPrice: 159.0,
+          newPrice: 130.0,
+        },
         description:
           'Proactively communicate corporate process improvements via corporate scenarios.',
         imageUrl:
           'https://demos.reytheme.com/beijing/wp-content/uploads/sites/7/2019/06/19-800x560.jpg',
         status: 'in stock',
         category: 'Storage',
+        isSale: true,
       },
       {
         id: 1004,
@@ -97,6 +116,7 @@ export class ProductsService {
           'https://demos.reytheme.com/beijing/wp-content/uploads/sites/7/2019/06/28-800x652.jpg',
         category: 'Lighting',
         status: 'in stock',
+        isFavorite: true,
       },
       {
         id: 2002,
@@ -130,6 +150,7 @@ export class ProductsService {
           'https://demos.reytheme.com/beijing/wp-content/uploads/sites/7/2019/06/1-12.jpg',
         category: 'Lighting',
         status: 'in stock',
+        isFavorite: true,
       },
       {
         imageUrl: '/assets/IMGS/chair1.jpg',
@@ -151,6 +172,7 @@ export class ProductsService {
         status: 'in stock',
         description:
           'Proactively communicate corporate process improvements via corporate scenarios. Progressively aggregate proactive data after diverse users. Rapidiously redefine front-end interfaces before go forward process improvements.',
+        isFavorite: true,
       },
 
       {
@@ -197,6 +219,7 @@ export class ProductsService {
           'https://demos.reytheme.com/beijing/wp-content/uploads/sites/7/2019/06/26.jpg',
         category: 'beds',
         status: 'in stock',
+        isFavorite: true,
       },
       {
         id: 4002,
@@ -274,6 +297,7 @@ export class ProductsService {
           'https://demos.reytheme.com/beijing/wp-content/uploads/sites/7/2019/06/03.jpg',
         category: 'sofas',
         status: 'in Stock',
+        isFavorite: true,
       },
       {
         id: 6004,
@@ -352,6 +376,7 @@ export class ProductsService {
           'https://demos.reytheme.com/beijing/wp-content/uploads/sites/7/2019/06/2-5-600x442.jpg',
         category: 'Tables',
         status: 'in Stock',
+        isFavorite: true,
       },
       {
         id: 7004,
@@ -377,24 +402,43 @@ export class ProductsService {
       },
     ];
   }
+
+  getFavoriteProducts(): Observable<Product[]> {
+    return this.allProducts$.pipe(
+      map((products: Product[]) =>
+        products.filter((product) => product.isFavorite)
+      )
+    );
+  }
+
+  getSaleProducts(): Observable<Product[]> {
+    return this.allProducts$.pipe(
+      map((products: Product[]) => products.filter((product) => product.isSale))
+    );
+  }
+
   getAllProducts(): Product[] {
     return this.allProductsSubject.value;
   }
+
   getProductById(productId: number): Product | null {
     return (
       this.allProductsSubject.value.find((p) => p.id === productId) || null
     );
   }
+
   getProductsByCategory(category: string): Product[] {
     return this.allProductsSubject.value.filter(
       (product) => product.category.toLowerCase() === category.toLowerCase()
     );
   }
+
   addProduct(product: Product): void {
     const currentProducts = this.allProductsSubject.value;
     const updatedProducts = [...currentProducts, product];
     this.updateProducts(updatedProducts);
   }
+
   updateProduct(updatedProduct: Product): void {
     const currentProducts = this.allProductsSubject.value;
     const updatedProducts = currentProducts.map((product) =>
@@ -407,6 +451,7 @@ export class ProductsService {
     this.allProductsSubject.next(products);
     this.dashboardService.saveProducts(products);
   }
+
   addToCart(product: any, quantity: number): void {
     const currentCart = this.cartSubject.value;
     const existingItemIndex = currentCart.findIndex(
@@ -427,11 +472,13 @@ export class ProductsService {
     }
     this.updateCart(currentCart);
   }
+
   removeFromCart(productId: number): void {
     const currentCart = this.cartSubject.value;
     const updatedCart = currentCart.filter((item) => item.id !== productId);
     this.updateCart(updatedCart);
   }
+
   updateCartItemQuantity(productId: number, quantity: number): void {
     const currentCart = this.cartSubject.value;
     const updatedCart = currentCart.map((item) =>
@@ -441,22 +488,26 @@ export class ProductsService {
     );
     this.updateCart(updatedCart);
   }
+
   private updateCart(cart: CartItem[]): void {
     this.cartSubject.next(cart);
     localStorage.setItem('cart', JSON.stringify(cart));
   }
+
   private loadCart(): void {
     const storedCart = localStorage.getItem('cart');
     if (storedCart) {
       this.cartSubject.next(JSON.parse(storedCart));
     }
   }
+
   getCartTotal(): number {
     return this.cartSubject.value.reduce(
       (total, item) => total + item.price * item.quantity,
       0
     );
   }
+
   addToWishlist(product: any): void {
     const currentWishlist = this.wishlistSubject.value;
     if (!currentWishlist.some((item) => item.id === product.id)) {
@@ -464,6 +515,7 @@ export class ProductsService {
       this.updateWishlist(currentWishlist);
     }
   }
+
   removeFromWishlist(productId: number): void {
     const currentWishlist = this.wishlistSubject.value;
     const updatedWishlist = currentWishlist.filter(
@@ -471,20 +523,23 @@ export class ProductsService {
     );
     this.updateWishlist(updatedWishlist);
   }
+
   private updateWishlist(wishlist: any[]): void {
     this.wishlistSubject.next(wishlist);
     localStorage.setItem('wishlist', JSON.stringify(wishlist));
   }
+
   private loadWishlist(): void {
     const storedWishlist = localStorage.getItem('wishlist');
     if (storedWishlist) {
       this.wishlistSubject.next(JSON.parse(storedWishlist));
     }
   }
+
   deleteProduct(productId: number): void {
     const updatedProducts = this.allProductsSubject.value.filter(
       (product) => product.id !== productId
     );
-    this.allProductsSubject.next(updatedProducts); // Emit the updated product list
+    this.updateProducts(updatedProducts);
   }
 }
